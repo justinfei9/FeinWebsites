@@ -3,10 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>DesignCraft - Freelance Web Designer Portfolio</title>
+    <title>FeinWebsites</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -29,9 +36,7 @@
                     backgroundImage: {
                         'hero-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
                     },
-                    animation: {
-                        blob: "blob 7s infinite",
-                    },
+                    animation: { blob: "blob 7s infinite" },
                     keyframes: {
                         blob: {
                             "0%": { transform: "translate(0px, 0px) scale(1)" },
@@ -44,81 +49,20 @@
             },
         };
     </script>
-    <style>
-        /* Custom Utility Classes for Curves */
-        .curve-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-        .curve-bottom svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 80px;
-        }
-        .curve-bottom .shape-fill {
-            fill: #F9FAFB;
-        }
-        .dark .curve-bottom .shape-fill {
-            fill: #111827;
-        }
-        
-        .curve-top-grey {
-            position: absolute;
-            top: -1px;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-        }
-        .curve-top-grey svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 100px;
-        }
-        .curve-top-grey .shape-fill {
-            fill: #F9FAFB;
-        }
-        .dark .curve-top-grey .shape-fill {
-            fill: #111827;
-        }
 
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-        }
-        .dark .glass-nav {
-            background: rgba(17, 24, 39, 0.85);
-        }
-        
-        .mockup-shadow {
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
-        }
 
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4"
+      }
+    }
+    </script>
 </head>
 <body class="font-sans bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-300">
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
