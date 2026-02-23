@@ -20,7 +20,7 @@ const App: React.FC = () => {
       <div className="flex flex-col min-h-screen">
         <ScrollToTop />
         <Navbar />
-        <main className="flex-grow">
+        <main className="grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/pricing" element={<Pricing />} />
