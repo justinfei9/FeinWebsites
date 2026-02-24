@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const projects = [
-  { id: 1, title: "Here Comes The Creations", img: "./content/herecomesthecreations.png", tag: "Client Portfolio", url: "https://herecomesthecreations.com" },
-  { id: 2, title: "Portfolio Resume", img: "./content/portfolioWebsite.png", tag: "Personal Resume", url: "https://justinfei9.github.io/IT-Website/" },
-  { id: 3, title: "Barber Shop Website", img: "./content/barbershop.png", tag: "Design Concept", url: "https://justinfei9.github.io/barbershop-example/" },
-  { id: 4, title: "Rent Tracking App", img: "./content/rentapp.png", tag: "Software UI", url: "https://justinfei9.github.io/rent-tracking-app/" },
+  { id: 1, title: "Here Comes The Creations", img: "./content/herecomesthecreations.webp", tag: "Client Portfolio", url: "https://herecomesthecreations.com" },
+  { id: 2, title: "Portfolio Resume", img: "./content/portfolioWebsite.webp", tag: "Personal Resume", url: "https://justinfei9.github.io/IT-Website/" },
+  { id: 3, title: "Barber Shop Website", img: "./content/barbershop.webp", tag: "Design Concept", url: "https://justinfei9.github.io/barbershop-example/" },
+  { id: 4, title: "Rent Tracking App", img: "./content/rentapp.webp", tag: "Software UI", url: "https://justinfei9.github.io/rent-tracking-app/" },
 ];
 
 const Portfolio = () => {

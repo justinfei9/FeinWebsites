@@ -90,7 +90,7 @@ const About: React.FC = () => {
             {/* 2. IMAGE CONTENT */}
             <div className="relative z-10 rounded-[3.5rem] overflow-hidden aspect-[4/5] m-[3px]">
               <img
-                src="./content/FounderPic.png"
+                src="./content/FounderPic.webp"
                 alt="Justin Fein"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
