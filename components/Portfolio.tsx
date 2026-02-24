@@ -13,25 +13,26 @@ const Portfolio = () => {
   const duplicatedProjects = [...projects, ...projects, ...projects];
 
   return (
-    <section 
-      id="portfolio" 
-      ref={sectionRef} 
+    <section
+      id="portfolio"
+      ref={sectionRef}
       // Changed bg to match your Services section flow
       className="relative py-24 bg-white dark:bg-gray-950 overflow-hidden"
     >
       {/* --- BACKGROUND CURVE DIVIDER --- */}
       {/* This SVG creates the "scoop" or curve from the section above */}
-      <div className="absolute top-0 left-0 w-full rotate-180 leading-[0] z-0">
-        <svg 
-          viewBox="0 0 1200 120" 
-          preserveAspectRatio="none" 
+      <div className="absolute top-0 left-0 w-full leading-[0] z-0">
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
           className="relative block w-[calc(100%+1.3px)] h-[100px] fill-gray-200 dark:fill-gray-900"
         >
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
         </svg>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-33.33%); }
@@ -50,7 +51,7 @@ const Portfolio = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full mb-12">
         <div className="flex flex-col items-center justify-center text-center">
           <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-gray-900 dark:text-white">
-             Featured Work
+            Featured Work
           </h2>
           <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl">
             A mix of client launches and design explorations. Click to visit.
@@ -62,8 +63,8 @@ const Portfolio = () => {
       <div className="relative z-10 flex w-full mt-12">
         <div className="marquee-track flex gap-8">
           {duplicatedProjects.map((project, index) => (
-            <a 
-              key={index} 
+            <a
+              key={index}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -76,17 +77,17 @@ const Portfolio = () => {
                   <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
                 </div>
                 <div className="w-full h-125 overflow-hidden">
-                    <img 
-                      src={project.img} 
-                      alt={project.title}
-                      className="w-full h-full object-top object-cover" 
-                      loading="eager"
-                    />
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-top object-cover"
+                    loading="eager"
+                  />
                 </div>
               </div>
               <div className="mt-6 flex flex-col gap-1 px-1 text-left">
                 <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 transition-colors">
-                    {project.title}
+                  {project.title}
                 </h3>
                 <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                   {project.tag}

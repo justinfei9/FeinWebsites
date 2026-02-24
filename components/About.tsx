@@ -1,45 +1,46 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { ShieldCheck, Palette, Zap, BadgeCheck, Headset } from "lucide-react";
 
 const About: React.FC = () => {
   const features = [
     {
       title: "Bulletproof Security",
       desc: "I build using modern frameworks that don't rely on vulnerable databases. Your site stays online and stays safe from common hacks.",
-      icon: "shield_lock",
+      icon: <ShieldCheck className="w-8 h-8" />,
     },
     {
       title: "Direct Design Process",
       desc: "You work directly with me to create a look that fits your brand. Since I handle both the design and the code, nothing gets lost in translation.",
-      icon: "palette",
+      icon: <Palette className="w-8 h-8" />,
     },
     {
       title: "Lightning Fast Performance",
       desc: "I strip away the bloat found in typical website builders. Your pages load instantly so your customers don't get tired of waiting.",
-      icon: "bolt",
+      icon: <Zap className="w-8 h-8" />,
     },
     {
       title: "Money Back Guarantee",
       desc: "If I can’t design a concept you love, you get your money back. I value my reputation more than a deposit.",
-      icon: "verified_user",
+      icon: <BadgeCheck className="w-8 h-8" />,
     },
     {
       title: "Direct Access Support",
       desc: "No robots and no support tickets. When you have a question you reach me directly on my personal line.",
-      icon: "support_agent",
+      icon: <Headset className="w-8 h-8" />,
     },
   ];
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       className="relative py-32 bg-blue-50 dark:bg-slate-950 overflow-hidden"
     >
       {/* --- TOP CURVE DIVIDER --- */}
-      <div className="absolute top-0 left-0 w-full rotate-180 leading-[0] z-0">
-        <svg 
-          viewBox="0 0 1200 120" 
-          preserveAspectRatio="none" 
+      <div className="absolute top-0 left-0 w-full leading-[0] z-0">
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
           className="relative block w-[calc(100%+1.3px)] h-[100px] fill-white dark:fill-gray-950"
         >
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
@@ -48,9 +49,9 @@ const About: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mt-12">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          
+
           {/* --- LEFT SIDE: PORTRAIT WITH LONGER SHIMMER BORDER --- */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -88,19 +89,19 @@ const About: React.FC = () => {
 
             {/* 2. IMAGE CONTENT */}
             <div className="relative z-10 rounded-[3.5rem] overflow-hidden aspect-[4/5] m-[3px]">
-              <img 
-                src="./content/FounderPic.png" 
+              <img
+                src="./content/FounderPic.png"
                 alt="Justin Fein"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-blue-900/10 to-transparent opacity-80" />
-              
+
               <div className="absolute bottom-8 left-8 transition-transform duration-500 group-hover:-translate-y-2 text-white">
                 <h3 className="text-3xl font-black tracking-tighter uppercase leading-none drop-shadow-lg">Justin Fein</h3>
                 <p className="text-blue-200 font-bold uppercase tracking-widest text-sm mt-2 drop-shadow-md">Owner and Solo Developer</p>
               </div>
             </div>
-            
+
             {/* Glow effect behind the shimmer */}
             <div className="absolute -inset-10 bg-blue-400/20 blur-[100px] rounded-full -z-10 transition-all duration-700 group-hover:bg-blue-400/30 group-hover:scale-105" />
           </motion.div>
@@ -109,7 +110,7 @@ const About: React.FC = () => {
           <div className="w-full lg:w-7/12">
             <div className="grid grid-cols-1 gap-8">
               {features.map((f, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -119,12 +120,10 @@ const About: React.FC = () => {
                   className="flex gap-5 items-start"
                 >
                   {/* Added 'group' and 'hover:' directly to the icon box */}
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-blue-100 dark:border-slate-800 flex items-center justify-center group hover:bg-blue-600 transition-colors duration-300 cursor-pointer">
-                    <span className="material-symbols-outlined text-blue-600 group-hover:text-white text-3xl transition-colors">
-                      {f.icon}
-                    </span>
+                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-blue-100 dark:border-slate-800 flex items-center justify-center group hover:bg-blue-600 transition-colors duration-300 cursor-pointer text-blue-600 group-hover:text-white">
+                    {f.icon}
                   </div>
-                  
+
                   <div>
                     <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
                       {f.title}
@@ -138,7 +137,7 @@ const About: React.FC = () => {
             </div>
 
             {/* --- NAVBAR STYLE CTA BUTTON --- */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

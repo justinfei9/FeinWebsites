@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 interface ShimmerCardProps {
   title: string;
   desc: string;
-  icon: string;
+  icon: React.ReactNode;
   color: string;
 }
 
 const ShimmerCard: React.FC<ShimmerCardProps> = ({ title, desc, icon, color }) => {
   return (
     <div className="group relative w-full mt-10 h-full transition-all duration-300 hover:-translate-y-2 z-0 hover:z-50">
-      
+
       {/* 1. SHIMMER BORDER CONTAINER */}
       <div className="absolute inset-0 rounded-[2.5rem] bg-slate-200 dark:bg-slate-800 p-[2px] overflow-hidden z-10">
         <motion.div
@@ -45,22 +45,22 @@ const ShimmerCard: React.FC<ShimmerCardProps> = ({ title, desc, icon, color }) =
 
       {/* 2. CONTENT LAYER */}
       <div className="relative z-20 h-full w-full p-10 pt-16 flex flex-col items-start text-left">
-        
+
         {/* Floating Icon Container */}
         <div className="absolute -top-10 left-10">
-          <div 
+          <div
             className="relative z-10 w-20 h-20 rounded-3xl flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-110"
-            style={{ 
+            style={{
               backgroundColor: color,
-              boxShadow: `0 20px 40px -10px rgba(0,0,0,0.3)` 
+              boxShadow: `0 20px 40px -10px rgba(0,0,0,0.3)`
             }}
           >
-            <span className="material-symbols-outlined text-4xl text-white">
+            <div className="text-white flex items-center justify-center w-10 h-10">
               {icon}
-            </span>
+            </div>
           </div>
         </div>
-        
+
         {/* Text Content */}
         <h3 className="mb-4 text-2xl font-black tracking-tight text-slate-900 dark:text-slate-100">
           {title}
