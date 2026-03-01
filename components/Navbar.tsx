@@ -15,13 +15,10 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // UPDATED: Added Packages (Pricing) to the array
   const navItems = [
     { title: "Home", href: "/" },
-    { title: "Packages", href: "/pricing" }, // This points to your new page
-    { title: "Services", href: "/#services" },
-    { title: "Portfolio", href: "/#portfolio" },
-    { title: "About", href: "/#about" },
+    { title: "Packages", href: "/pricing" },
+    { title: "Contact", href: "/contact" },
   ];
 
   return (
