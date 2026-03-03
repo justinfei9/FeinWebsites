@@ -142,10 +142,10 @@ const Pricing: React.FC = () => {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
                             className={cn(
-                                "relative flex flex-col p-8 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500",
+                                "relative flex flex-col p-8 rounded-[2.5rem] border transition-all duration-500",
                                 plan.isPopular
-                                    ? "bg-white/[0.08] border-blue-500/50 shadow-2xl shadow-blue-500/10 z-10"
-                                    : "bg-white/[0.04] border-white/10 hover:border-white/20"
+                                    ? "bg-slate-900 border-blue-500/50 shadow-2xl shadow-blue-500/10 z-10"
+                                    : "bg-slate-900/40 border-slate-800 hover:border-slate-700"
                             )}
                         >
                             {plan.isPopular && (
@@ -156,7 +156,7 @@ const Pricing: React.FC = () => {
 
                             <div className="mb-8 text-center">
                                 <h3 className="text-3xl font-bold text-white mb-3 tracking-tight">{plan.name}</h3>
-                                <p className="text-blue-100/50 text-sm leading-relaxed px-4">
+                                <p className="text-slate-400 text-sm leading-relaxed px-4">
                                     {plan.description}
                                 </p>
                             </div>
@@ -168,7 +168,7 @@ const Pricing: React.FC = () => {
                                             <span className="text-5xl font-black tracking-tighter italic">
                                                 $<Counter from={0} to={plan.price} />
                                             </span>
-                                            <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest ml-1">
+                                            <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest ml-1">
                                                 {plan.billing}
                                             </span>
                                         </>
@@ -180,10 +180,10 @@ const Pricing: React.FC = () => {
                                 <div className="mt-2 min-h-[24px] flex justify-center items-center gap-2">
                                     {plan.recurringFee && (
                                         <>
-                                            <span className="bg-white/5 text-blue-100/70 text-[10px] font-bold px-2 py-0.5 rounded-md border border-white/10">
+                                            <span className="bg-slate-800 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md border border-slate-700">
                                                 +${plan.recurringFee}/mo
                                             </span>
-                                            <span className="text-white/40 text-[10px] uppercase font-bold tracking-tight">
+                                            <span className="text-slate-500 text-[10px] uppercase font-bold tracking-tight">
                                                 Maintenance
                                             </span>
                                         </>
@@ -192,15 +192,15 @@ const Pricing: React.FC = () => {
                             </div>
 
                             <button className={cn(
-                                "w-full py-4 rounded-2xl font-bold transition-all active:scale-95 mb-10 shadow-lg border border-white/10",
+                                "w-full py-4 rounded-2xl font-bold transition-all active:scale-95 mb-10 shadow-lg",
                                 plan.accent,
-                                plan.name === "The Partnership" ? "text-white" : "text-white"
+                                plan.name === "The Partnership" ? "text-slate-950" : "text-white"
                             )}>
                                 {plan.cta}
                             </button>
 
                             <ul className="space-y-4">
-                                <li className="flex items-start gap-3 text-blue-100/80 mb-2">
+                                <li className="flex items-start gap-3 text-slate-200 mb-2">
                                     <svg className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>
@@ -214,14 +214,14 @@ const Pricing: React.FC = () => {
                                     return (
                                         <li key={j} className={cn(
                                             "flex items-start gap-3 transition-opacity duration-300",
-                                            isIncluded ? "text-blue-100/80" : "text-white/20"
+                                            isIncluded ? "text-slate-200" : "text-slate-600 opacity-40"
                                         )}>
                                             {isIncluded ? (
                                                 <svg className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             ) : (
-                                                <svg className="w-5 h-5 text-rose-500/50 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
                                                 </svg>
                                             )}
