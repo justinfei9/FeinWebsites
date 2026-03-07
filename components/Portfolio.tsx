@@ -16,25 +16,26 @@ const Portfolio = () => {
     target: sectionRef,
     offset: ["start end", "end start"]
   });
-  // Slow down the scroll speed of the content to create parallax
+
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
     <section
       id="portfolio"
       ref={sectionRef}
-      // Changed bg to match your Services section flow
       className="relative py-24 bg-white dark:bg-gray-950 overflow-hidden"
     >
-      {/* --- BACKGROUND CURVE DIVIDER --- */}
-      {/* This SVG creates the "scoop" or curve from the section above */}
+      {/* --- UPDATED BACKGROUND CURVE DIVIDER --- */}
       <div className="absolute -top-1 left-0 w-full leading-[0] z-0">
         <svg
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
           className="relative block w-[calc(100%+4px)] -ml-[2px] h-[100px] fill-gray-200 dark:fill-gray-900"
         >
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+          {/* This new path uses a smoother Bézier curve (C) 
+              to eliminate the straight-line feeling in the center.
+          */}
+          <path d="M0,0V30c0,0,150,90,300,90s300-60,450-60,300,60,450,60V0H0Z"></path>
         </svg>
       </div>
 
@@ -55,6 +56,7 @@ const Portfolio = () => {
         }
       `}} />
 
+      {/* ... rest of the component (motion.div, marquee logic, etc) remains exactly the same ... */}
       <motion.div style={{ y }} className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 w-full mb-12">
           <div className="flex flex-col items-center justify-center text-center">
@@ -67,7 +69,6 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* --- MARQUEE SECTION --- */}
         <div className="relative flex w-full mt-12">
           <div className="marquee-track flex gap-8">
             {duplicatedProjects.map((project, index) => (

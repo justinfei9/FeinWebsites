@@ -36,14 +36,15 @@ const About: React.FC = () => {
       id="about"
       className="relative py-32 bg-blue-50 dark:bg-slate-950 overflow-hidden"
     >
-      {/* --- TOP CURVE DIVIDER --- */}
+      {/* --- TOP CURVE DIVIDER (ASYMMETRICAL / ORGANIC WAVE) --- */}
       <div className="absolute -top-1 left-0 w-full leading-[0] z-0">
         <svg
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
           className="relative block w-[calc(100%+4px)] -ml-[2px] h-[100px] fill-white dark:fill-gray-950"
         >
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+          {/* Custom calculated path for smooth but irregular waves */}
+          <path d="M0,0 L0,60 C 150,140 250,-20 450,40 C 600,85 700,150 850,80 C 1000,10 1100,130 1200,50 L1200,0 Z"></path>
         </svg>
       </div>
 
@@ -86,7 +87,7 @@ const About: React.FC = () => {
               <div className="absolute inset-[3px] rounded-[calc(3.5rem-3px)] bg-white dark:bg-slate-900 z-0" />
             </div>
 
-            {/* 2. IMAGE CONTENT (Border radius fixed here) */}
+            {/* 2. IMAGE CONTENT */}
             <div className="relative z-10 rounded-[calc(3.5rem-3px)] overflow-hidden aspect-[4/5] m-[3px]">
               <img
                 src="./content/FounderPic.webp"
@@ -117,7 +118,7 @@ const About: React.FC = () => {
                   transition={{ delay: i * 0.1 }}
                   className="flex gap-5 items-start"
                 >
-                  {/* --- ICON CONTAINER: Hover effects fixed --- */}
+                  {/* --- ICON CONTAINER --- */}
                   <motion.div
                     whileHover={{ scale: 1.05, rotate: 5 }}
                     className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-blue-100 dark:border-slate-800 flex items-center justify-center cursor-pointer text-blue-600 transition-all duration-300 hover:text-white hover:bg-gradient-to-br hover:from-blue-500 hover:to-blue-700 hover:border-transparent hover:shadow-lg hover:shadow-blue-500/40"
@@ -137,7 +138,7 @@ const About: React.FC = () => {
               ))}
             </div>
 
-            {/* --- NAVBAR STYLE CTA BUTTON --- */}
+            {/* --- CTA BUTTON --- */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

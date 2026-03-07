@@ -138,7 +138,7 @@ const Services: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 2, duration: 0.8 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-12 text-lg md:text-2xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl"
           >
             High-performance, hand-coded solutions designed to turn visitors into customers.
@@ -152,7 +152,7 @@ const Services: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 2.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.2 }}
             >
               <ShimmerCard {...f} />
             </motion.div>
