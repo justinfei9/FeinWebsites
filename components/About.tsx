@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ShieldCheck, Palette, Zap, BadgeCheck, Headset } from "lucide-react";
 
 const About: React.FC = () => {
@@ -146,14 +147,17 @@ const About: React.FC = () => {
               transition={{ delay: 0.5 }}
               className="mt-14"
             >
-              <motion.a
+              <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                href="#contact"
-                className="inline-block bg-primary text-white font-bold text-lg px-10 py-5 rounded-full shadow-xl shadow-blue-500/30 border border-blue-400/20 transition-colors hover:bg-slate-500"
               >
-                Start Your Project
-              </motion.a>
+                <Link
+                  to="/contact"
+                  className="inline-block bg-primary text-white font-bold text-lg px-10 py-5 rounded-full shadow-xl shadow-blue-500/30 border border-blue-400/20 transition-colors hover:bg-slate-500"
+                >
+                  Start Your Project
+                </Link>
+              </motion.div>
             </motion.div>
 
           </div>

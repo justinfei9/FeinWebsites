@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 
 const Hosting: React.FC = () => {
@@ -32,14 +33,17 @@ const Hosting: React.FC = () => {
               Don't stress about technical updates, backups, or downtime. I offer comprehensive monthly packages so you can focus on running your business while I keep your site perfect.
             </p>
 
-            <motion.a
+            <motion.div
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
-              href="#contact"
-              className="inline-block bg-primary text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-primary/20 border border-white/10 transition-all text-lg"
             >
-              Start Project
-            </motion.a>
+              <Link
+                to="/contact"
+                className="inline-block bg-primary text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-primary/20 border border-white/10 transition-all text-lg"
+              >
+                Start Project
+              </Link>
+            </motion.div>
           </div>
 
           {/* Right Side: Features List */}

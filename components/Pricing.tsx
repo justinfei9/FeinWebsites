@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { motion, animate, useScroll, useTransform } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const cn = (...classes: any[]) => classes.filter(Boolean).join(' ');
 
@@ -27,12 +28,13 @@ const Pricing: React.FC = () => {
     const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
     const comparisonFeatures = [
+        "Custom Domain Included",
         "Mobile-First Responsive Design",
-        "Contact Form Integration",
+        "Contact Form & Lead Capture",
         "Lightning Fast Performance",
         "Advanced SEO & Schema",
         "Google Analytics Integration",
-        "Google Business Map Setup",
+        "Google Business Profile Setup",
         "Social Media Link Previews",
         "Custom Scroll Animations",
         "Unlimited Content Edits",
@@ -45,13 +47,14 @@ const Pricing: React.FC = () => {
         {
             name: "The Single",
             pageCount: "1 Custom Hand-Coded Page",
-            description: "A high-conversion one-page site. Fast, sleek, and focused on your primary goal.",
+            description: "A high-conversion landing page. Fast, sleek, and laser-focused on turning visitors into leads.",
             price: 500,
             billing: "One-Time Payment",
             recurringFee: 30,
             included: [
+                "Custom Domain Included",
                 "Mobile-First Responsive Design",
-                "Contact Form Integration",
+                "Contact Form & Lead Capture",
                 "Lightning Fast Performance",
                 "Advanced SEO & Schema"
             ],
@@ -61,17 +64,18 @@ const Pricing: React.FC = () => {
         {
             name: "Standard 5",
             pageCount: "Up to 5 Custom Pages",
-            description: "The complete business package. Enough room to showcase all your services.",
+            description: "The complete digital storefront. Perfect for growing businesses needing to thoroughly showcase their services.",
             price: 1000,
             billing: "One-Time Payment",
             recurringFee: 50,
             included: [
+                "Custom Domain Included",
                 "Mobile-First Responsive Design",
-                "Contact Form Integration",
+                "Contact Form & Lead Capture",
                 "Lightning Fast Performance",
                 "Advanced SEO & Schema",
                 "Google Analytics Integration",
-                "Google Business Map Setup",
+                "Google Business Profile Setup",
                 "Social Media Link Previews",
                 "Custom Scroll Animations"
             ],
@@ -82,16 +86,17 @@ const Pricing: React.FC = () => {
         {
             name: "The Partnership",
             pageCount: "Unlimited Page Requests",
-            description: "Custom amount of pages with ongoing support and zero upfront risk.",
+            description: "A fully managed solution. I act as your dedicated web partner with ongoing support and zero upfront cost.",
             price: null,
             billing: "Monthly Subscription",
             included: [
+                "Custom Domain Included",
                 "Mobile-First Responsive Design",
-                "Contact Form Integration",
+                "Contact Form & Lead Capture",
                 "Lightning Fast Performance",
                 "Advanced SEO & Schema",
                 "Google Analytics Integration",
-                "Google Business Map Setup",
+                "Google Business Profile Setup",
                 "Social Media Link Previews",
                 "Custom Scroll Animations",
                 "Unlimited Content Edits",
@@ -171,8 +176,13 @@ const Pricing: React.FC = () => {
                                 <div className="flex items-baseline justify-center gap-1 text-white">
                                     {plan.price !== null ? (
                                         <>
+                                            {/*removing counting up seems like this is off putting for a client
                                             <span className="text-5xl font-black tracking-tighter italic">
                                                 $<Counter from={0} to={plan.price} />
+                                            </span>
+                                            */}
+                                            <span className="text-5xl font-black tracking-tighter italic">
+                                                ${plan.price.toLocaleString()}
                                             </span>
                                             <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest ml-1">
                                                 {plan.billing}
@@ -197,20 +207,23 @@ const Pricing: React.FC = () => {
                                 </div>
                             </div>
 
-                            <button className={cn(
-                                "w-full py-4 rounded-2xl font-bold transition-all active:scale-95 mb-10 shadow-lg",
-                                plan.accent,
-                                plan.name === "The Partnership" ? "text-slate-950" : "text-white"
-                            )}>
+                            <Link
+                                to="/contact"
+                                className={cn(
+                                    "w-full py-4 rounded-2xl font-bold transition-all active:scale-95 mb-10 shadow-lg text-center block",
+                                    plan.accent,
+                                    plan.name === "The Partnership" ? "text-slate-950" : "text-white"
+                                )}
+                            >
                                 {plan.cta}
-                            </button>
+                            </Link>
 
                             <ul className="space-y-4">
                                 <li className="flex items-start gap-3 text-slate-200 mb-2">
                                     <svg className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span className="text-sm font-bold tracking-tight">
+                                    <span className="text-sm font-medium leading-tight tracking-tight">
                                         {plan.pageCount}
                                     </span>
                                 </li>

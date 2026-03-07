@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import HeroBackground from './HeroBackground';
 import TextType from './TextType';
 
@@ -62,14 +63,17 @@ const Hero: React.FC = () => {
           className="flex flex-col sm:flex-row justify-center gap-5 items-center"
         >
           {/* Primary CTA: Solid Blue with Shadow */}
-          <motion.a
-            href="#contact"
+          <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-blue-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl shadow-blue-500/40 border border-blue-400/20 transition-colors hover:bg-blue-700 block text-lg"
           >
-            Get Started
-          </motion.a>
+            <Link
+              to="/contact"
+              className="bg-blue-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl shadow-blue-500/40 border border-blue-400/20 transition-colors hover:bg-blue-700 block text-lg"
+            >
+              Get Started
+            </Link>
+          </motion.div>
 
           {/* Secondary CTA: Glassmorphism / Outline */}
           <motion.a
