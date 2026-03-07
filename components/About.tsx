@@ -65,19 +65,18 @@ const About: React.FC = () => {
                 animate={{ rotate: "360deg" }}
                 transition={{
                   repeat: Infinity,
-                  duration: 6, // Slowed down slightly for the longer lines
+                  duration: 6,
                   ease: "linear",
                 }}
                 style={{
-                  // UPDATED GRADIENT: TWO LONG LINES
                   background: `conic-gradient(
                     from 0deg, 
-                    #3b82f6 0%,    /* Start Line 1 */
-                    #3b82f6 25%,   /* End Line 1 (Long segment) */
+                    #3b82f6 0%,    
+                    #3b82f6 25%,   
                     transparent 25%, 
                     transparent 50%, 
-                    #3b82f6 50%,    /* Start Line 2 */
-                    #3b82f6 75%,    /* End Line 2 (Long segment) */
+                    #3b82f6 50%,    
+                    #3b82f6 75%,    
                     transparent 75%, 
                     transparent 100%
                   )`,
@@ -87,8 +86,8 @@ const About: React.FC = () => {
               <div className="absolute inset-[3px] rounded-[calc(3.5rem-3px)] bg-white dark:bg-slate-900 z-0" />
             </div>
 
-            {/* 2. IMAGE CONTENT */}
-            <div className="relative z-10 rounded-[3.5rem] overflow-hidden aspect-[4/5] m-[3px]">
+            {/* 2. IMAGE CONTENT (Border radius fixed here) */}
+            <div className="relative z-10 rounded-[calc(3.5rem-3px)] overflow-hidden aspect-[4/5] m-[3px]">
               <img
                 src="./content/FounderPic.webp"
                 alt="Justin Fein"
@@ -116,13 +115,15 @@ const About: React.FC = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  // Removed 'group/feature' from here so text doesn't trigger hover
                   className="flex gap-5 items-start"
                 >
-                  {/* Added 'group' and 'hover:' directly to the icon box */}
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-blue-100 dark:border-slate-800 flex items-center justify-center group hover:bg-blue-600 transition-colors duration-300 cursor-pointer text-blue-600 group-hover:text-white">
+                  {/* --- ICON CONTAINER: Hover effects fixed --- */}
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotate: 5 }}
+                    className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-blue-100 dark:border-slate-800 flex items-center justify-center cursor-pointer text-blue-600 transition-all duration-300 hover:text-white hover:bg-gradient-to-br hover:from-blue-500 hover:to-blue-700 hover:border-transparent hover:shadow-lg hover:shadow-blue-500/40"
+                  >
                     {f.icon}
-                  </div>
+                  </motion.div>
 
                   <div>
                     <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
@@ -162,4 +163,3 @@ const About: React.FC = () => {
 };
 
 export default About;
-
