@@ -1,6 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
+const AnimatedInput = ({ label, type = "text", name, value, onChange, required = false, placeholder = "" }: any) => {
+    // We check if value exists to keep the label 'floated'
+    const hasValue = value !== undefined && value !== null && value !== "";
+    // Faster animation for longer labels to not keep the user waiting
+    const isLongLabel = label.length > 15;
+    const delayStep = isLongLabel ? 15 : 50;
+
+    return (
+        <div className="relative my-2 w-full group/input">
+            <input
+                type={type}
+                name={name}
+                id={name}
+                value={value}
+                onChange={onChange}
+                required={required}
+                className="block w-full bg-transparent border-0 border-b-2 border-white/20 pt-[15px] pb-[10px] text-base text-white focus:outline-none focus:border-blue-500 transition-colors duration-300"
+            />
+            <label
+                htmlFor={name}
+                className="absolute top-[15px] left-0 flex pointer-events-none"
+            >
+                {label.split('').map((char: string, index: number) => (
+                    <span
+                        key={index}
+                        className={`inline-block min-w-[2px] sm:min-w-[5px] font-bold uppercase tracking-[0.05em] sm:tracking-[0.1em] transition-all duration-300 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] ${hasValue
+                            ? 'text-blue-400 -translate-y-[25px] text-[8px] sm:text-[10px]'
+                            : 'text-white/40 text-[10px] sm:text-[14px] group-focus-within/input:text-blue-400 group-focus-within/input:-translate-y-[25px] group-focus-within/input:text-[8px] sm:group-focus-within/input:text-[10px]'
+                            }`}
+                        style={{ transitionDelay: `${index * delayStep}ms` }}
+                    >
+                        {char === ' ' ? '\u00A0' : char}
+                    </span>
+                ))}
+            </label>
+        </div>
+    );
+};
 
 const Contact: React.FC = () => {
     const sectionRef = useRef(null);
@@ -106,18 +144,15 @@ const Contact: React.FC = () => {
                 >
                     {/* Heading */}
                     <div>
-                        <p className="text-blue-400 text-xs font-bold uppercase tracking-[0.22em] mb-3">
-                            Get in Touch
+                        <p className="text-blue-500 font-bold uppercase tracking-[0.15em] mb-4 text-sm">
+                            Start a Project
                         </p>
-                        <h1 className="text-4xl xl:text-5xl font-black tracking-tight leading-[1.1] mb-4">
-                            Let's build<br />
-                            something{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                                great.
-                            </span>
+                        <h1 className="text-4xl xl:text-6xl font-black tracking-tighter leading-[1.05] mb-6 text-white">
+                            Ready to work<br />
+                            together?
                         </h1>
-                        <p className="text-blue-100/50 text-sm leading-relaxed max-w-xs">
-                            Fill out the form and I'll get back to you within a few hours with a plan of action.
+                        <p className="text-slate-400 text-base leading-relaxed max-w-sm">
+                            Drop your details below. I'll review your project and get back to you with a clear plan of action.
                         </p>
                     </div>
 
@@ -165,9 +200,6 @@ const Contact: React.FC = () => {
                             </div>
                         </div>
                     </div>
-
-                    {/* Divider line decoration */}
-                    <div className="hidden lg:block h-px w-full bg-gradient-to-r from-blue-500/30 via-white/10 to-transparent" />
                 </motion.div>
 
 
@@ -248,53 +280,109 @@ const Contact: React.FC = () => {
                             <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-4">
 
                                 {/* Row 1: Name + Email */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="name" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Name</label>
-                                        <input type="text" id="name" name="name" value={formState.name} onChange={handleChange} required placeholder="John Doe" className={inputClass} />
-                                    </div>
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="email" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email</label>
-                                        <input type="email" id="email" name="email" value={formState.email} onChange={handleChange} required placeholder="john@example.com" className={inputClass} />
-                                    </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                                    <AnimatedInput
+                                        label="Name"
+                                        name="name"
+                                        value={formState.name}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <AnimatedInput
+                                        label="Email"
+                                        type="email"
+                                        name="email"
+                                        value={formState.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </div>
 
                                 {/* Row 2: Package + Phone */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="service" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Package</label>
-                                        <select id="service" name="service" value={formState.service} onChange={handleChange} required className={inputClass + ' appearance-none cursor-pointer'}>
-                                            <option value="" disabled className="bg-[#0c1f4a] text-white/40">Select a Package</option>
-                                            <option value="The Single" className="bg-[#0c1f4a]">The Single (1 Page)</option>
-                                            <option value="Standard 5" className="bg-[#0c1f4a]">Standard 5 (Up to 5 Pages)</option>
-                                            <option value="The Partnership" className="bg-[#0c1f4a]">The Partnership (Monthly)</option>
-                                            <option value="Custom/Other" className="bg-[#0c1f4a]">Custom / Not Sure</option>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                                    <div className="relative my-2 w-full group/input">
+                                        <select
+                                            id="service"
+                                            name="service"
+                                            value={formState.service}
+                                            onChange={handleChange}
+                                            required
+                                            className="block w-full bg-transparent border-0 border-b-2 border-white/20 pt-[15px] pb-[10px] text-base text-white focus:outline-none focus:border-blue-500 transition-colors duration-300 appearance-none cursor-pointer"
+                                        >
+                                            <option value="" disabled className="hidden text-white/40"></option>
+                                            <option value="The Single" className="bg-[#030711] text-white">The Single (1 Page)</option>
+                                            <option value="Standard 5" className="bg-[#030711] text-white">Standard 5 (Up to 5 Pages)</option>
+                                            <option value="The Partnership" className="bg-[#030711] text-white">The Partnership (Monthly)</option>
+                                            <option value="Custom/Other" className="bg-[#030711] text-white">Custom / Not Sure</option>
                                         </select>
-                                    </div>
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="phone" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                                            Phone <span className="normal-case font-normal text-white/20">(optional)</span>
+                                        <label htmlFor="service" className="absolute top-[15px] left-0 flex pointer-events-none">
+                                            {"Package".split('').map((char: string, index: number) => (
+                                                <span
+                                                    key={index}
+                                                    className={`inline-block min-w-[5px] font-bold uppercase tracking-[0.1em] transition-all duration-300 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] ${formState.service !== ""
+                                                        ? 'text-blue-400 -translate-y-[25px] text-[10px]'
+                                                        : 'text-white/40 text-[14px] group-focus-within/input:text-blue-400 group-focus-within/input:-translate-y-[25px] group-focus-within/input:text-[10px]'
+                                                        }`}
+                                                    style={{ transitionDelay: `${index * 50}ms` }}
+                                                >
+                                                    {char === ' ' ? '\u00A0' : char}
+                                                </span>
+                                            ))}
                                         </label>
-                                        <input type="tel" id="phone" name="phone" value={formState.phone} onChange={handleChange} placeholder="(555) 123-4567" className={inputClass} />
                                     </div>
+                                    <AnimatedInput
+                                        label="Phone"
+                                        type="tel"
+                                        name="phone"
+                                        value={formState.phone}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </div>
 
                                 {/* Row 3: Industry + Goal */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="industry" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Business / Industry</label>
-                                        <input type="text" id="industry" name="industry" value={formState.industry} onChange={handleChange} required placeholder="e.g. Real Estate, Plumber" className={inputClass} />
-                                    </div>
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="goal" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Website Goal</label>
-                                        <input type="text" id="goal" name="goal" value={formState.goal} onChange={handleChange} required placeholder="e.g. Get Leads, Sell Products" className={inputClass} />
-                                    </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                                    <AnimatedInput
+                                        label="Industry"
+                                        name="industry"
+                                        value={formState.industry}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <AnimatedInput
+                                        label="How did you hear about us?"
+                                        name="goal"
+                                        value={formState.goal}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </div>
 
                                 {/* Row 4: Message */}
-                                <div className="space-y-1.5">
-                                    <label htmlFor="message" className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Project Details</label>
-                                    <textarea id="message" name="message" value={formState.message} onChange={handleChange} required rows={3} placeholder="Tell me more about your project..." className={inputClass + ' resize-none'} />
+                                <div className="relative my-2 w-full mb-8 group/input">
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        value={formState.message}
+                                        onChange={handleChange}
+                                        required
+                                        rows={3}
+                                        className="block w-full bg-transparent border-0 border-b-2 border-white/20 pt-[15px] pb-[10px] text-base text-white focus:outline-none focus:border-blue-500 transition-colors duration-300 resize-none"
+                                    />
+                                    <label htmlFor="message" className="absolute top-[15px] left-0 flex pointer-events-none">
+                                        {"Tell us about your business".split('').map((char: string, index: number) => (
+                                            <span
+                                                key={index}
+                                                className={`inline-block min-w-[5px] font-bold uppercase tracking-[0.1em] transition-all duration-300 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] ${formState.message !== ""
+                                                    ? 'text-blue-400 -translate-y-[25px] text-[8px] sm:text-[10px]'
+                                                    : 'text-white/40 text-[10px] sm:text-[14px] group-focus-within/input:text-blue-400 group-focus-within/input:-translate-y-[25px] group-focus-within/input:text-[8px] sm:group-focus-within/input:text-[10px]'
+                                                    }`}
+                                                style={{ transitionDelay: `${index * 15}ms` }}
+                                            >
+                                                {char === ' ' ? '\u00A0' : char}
+                                            </span>
+                                        ))}
+                                    </label>
                                 </div>
 
                                 {/* Submit */}
