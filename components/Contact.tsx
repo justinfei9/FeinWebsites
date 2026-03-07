@@ -114,7 +114,7 @@ const Contact: React.FC = () => {
         'w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-all text-white placeholder-white/20 font-medium text-sm';
 
     return (
-        <div ref={sectionRef} className="min-h-screen bg-[#030711] text-white font-sans flex items-center justify-center relative px-6 pb-[26px]">
+        <div ref={sectionRef} className="min-h-screen bg-[#030711] text-white font-sans flex items-center justify-center relative px-6 pt-20 pb-[26px]">
 
             {/* Dot-grid background */}
             <div
