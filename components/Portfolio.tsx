@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const projects = [
   { id: 1, title: "Here Comes The Creations", img: "./content/herecomesthecreations.webp", tag: "Client Portfolio", url: "https://herecomesthecreations.com" },
@@ -25,16 +25,13 @@ const Portfolio = () => {
       ref={sectionRef}
       className="relative py-24 bg-white dark:bg-gray-950 overflow-hidden"
     >
-      {/* --- UPDATED BACKGROUND CURVE DIVIDER --- */}
+      {/* Background Curve Divider */}
       <div className="absolute -top-1 left-0 w-full leading-[0] z-0">
         <svg
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
           className="relative block w-[calc(100%+4px)] -ml-[2px] h-[100px] fill-gray-200 dark:fill-gray-900"
         >
-          {/* This new path uses a smoother Bézier curve (C) 
-              to eliminate the straight-line feeling in the center.
-          */}
           <path d="M0,0V30c0,0,150,90,300,90s300-60,450-60,300,60,450,60V0H0Z"></path>
         </svg>
       </div>
@@ -56,7 +53,6 @@ const Portfolio = () => {
         }
       `}} />
 
-      {/* ... rest of the component (motion.div, marquee logic, etc) remains exactly the same ... */}
       <motion.div style={{ y }} className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 w-full mb-12">
           <div className="flex flex-col items-center justify-center text-center">
@@ -79,28 +75,30 @@ const Portfolio = () => {
                 rel="noopener noreferrer"
                 className="portfolio-card relative w-[300px] md:w-[450px] flex-shrink-0 group cursor-pointer block"
               >
-                <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 transition-all duration-300 group-hover:shadow-2xl">
-                  <div className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 p-3 flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                  </div>
-                  <div className="w-full h-125 overflow-hidden">
-                    <img
-                      src={project.img}
-                      alt={project.title}
-                      className="w-full h-full object-top object-cover"
-                      loading="eager"
-                    />
-                  </div>
+                {/* Image Container */}
+                <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 mb-5 relative">
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="eager"
+                  />
                 </div>
-                <div className="mt-6 flex flex-col gap-1 px-1 text-left">
-                  <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 transition-colors">
-                    {project.title}
-                  </h3>
-                  <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
+
+                {/* Text Content Underneath */}
+                <div className="flex flex-col gap-1.5 px-2 text-left">
+                  <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-500">
                     {project.tag}
                   </span>
+                  <div className="flex items-center justify-between mt-1">
+                    <h3 className="font-bold text-gray-900 dark:text-white text-2xl group-hover:text-blue-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    {/* Arrow indicator */}
+                    <span className="text-gray-400 dark:text-gray-500 group-hover:text-blue-600 group-hover:translate-x-1 transition-all text-xl">
+                      &rarr;
+                    </span>
+                  </div>
                 </div>
               </a>
             ))}
