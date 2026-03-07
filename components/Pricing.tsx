@@ -46,7 +46,7 @@ const Pricing: React.FC = () => {
     const plans = [
         {
             name: "The Single",
-            pageCount: "1 Custom Hand-Coded Page",
+            pageCount: "1 Custom Page",
             description: "A high-conversion landing page. Fast, sleek, and laser-focused on turning visitors into leads.",
             price: 500,
             billing: "One-Time Payment",

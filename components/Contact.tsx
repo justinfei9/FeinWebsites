@@ -15,6 +15,7 @@ const Contact: React.FC = () => {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState('');
     const [displayEmail, setDisplayEmail] = useState('');
     const [displayPhone, setDisplayPhone] = useState('');
 
@@ -25,15 +26,46 @@ const Contact: React.FC = () => {
         setDisplayPhone(`${pPt1}-${pPt2}-${pPt3}`);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setTimeout(() => {
+        setSubmitError('');
+
+        try {
+            const formData = new FormData();
+            formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+
+            // Add all form fields to FormData
+            Object.entries(formState).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+
+            // Optional: Web3Forms config
+            formData.append("subject", `New Contact Form Submission from ${formState.name}`);
+            formData.append("from_name", formState.name);
+            // formData.append("redirect", "https://web3forms.com/success"); // if you want visual redirect, otherwise api is better
+
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setIsSubmitted(true);
+                setFormState({ name: '', email: '', phone: '', service: '', industry: '', goal: '', message: '' });
+                setTimeout(() => setIsSubmitted(false), 5000);
+            } else {
+                console.error("Web3Forms error:", data);
+                setSubmitError(data.message || "Failed to send message. Please try again or email directly.");
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            setSubmitError("An unexpected error occurred. Please try again.");
+        } finally {
             setIsSubmitting(false);
-            setIsSubmitted(true);
-            setFormState({ name: '', email: '', phone: '', service: '', industry: '', goal: '', message: '' });
-            setTimeout(() => setIsSubmitted(false), 5000);
-        }, 1500);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -195,6 +227,20 @@ const Contact: React.FC = () => {
                                         </motion.div>
                                         <h3 className="text-2xl font-black text-white mb-2">You're on the list!</h3>
                                         <p className="text-blue-100/50 text-sm">I'll be in touch soon — keep an eye on your inbox.</p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            {/* Error Message */}
+                            <AnimatePresence>
+                                {submitError && !isSubmitted && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        className="relative z-10 mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-200 text-sm text-center"
+                                    >
+                                        {submitError}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
