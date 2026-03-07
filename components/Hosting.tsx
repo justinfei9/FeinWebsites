@@ -71,10 +71,10 @@ const Hosting: React.FC = () => {
         <svg
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
-          className="relative block w-[calc(100%+4px)] -ml-[2px] h-[120px] md:h-[150px] fill-primary transition-transform duration-300 rotate-180"
+          className="relative block w-[calc(100%+4px)] -ml-[2px] h-[120px] md:h-[150px] fill-primary transition-transform duration-300"
         >
-          {/* Continuous double-wave path */}
-          <path d="M0,0 L0,40 C300,120 400,120 600,60 C800,0 900,0 1200,40 L1200,0 Z"></path>
+          {/* Physical flip: Y values inverted (120 - original_y) */}
+          <path d="M0,120 L0,80 C300,0 400,0 600,60 C800,120 900,120 1200,80 L1200,120 Z"></path>
         </svg>
       </div>
     </section>

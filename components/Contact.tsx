@@ -209,29 +209,16 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="lg:col-span-3"
                 >
-                    <div className="group relative p-[1px] rounded-[2rem] overflow-hidden shadow-2xl shadow-black/50">
-                        {/* Shimmer Border Layer */}
-                        <motion.div
-                            initial={{ rotate: "0deg" }}
-                            animate={{ rotate: "360deg" }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 8,
-                                ease: "linear",
-                            }}
-                            style={{
-                                background: `conic-gradient(
-                                    from 0deg, 
-                                    ${'#3b82f6'} 0%, 
-                                    transparent 15%, 
-                                    transparent 50%, 
-                                    ${'#3b82f6'} 50%, 
-                                    transparent 65%, 
-                                    transparent 100%
-                                )`,
-                            }}
-                            className="absolute inset-[-250%] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                        />
+                    <div className="group relative p-[1px] rounded-[2rem] shadow-2xl shadow-black/50">
+                        {/* Glow Border Layer - Outside/Around */}
+                        <div className="absolute inset-[-20px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                            <div className="absolute inset-0 bg-blue-500/10 blur-[40px] rounded-[3rem]" />
+                        </div>
+
+                        {/* Border Glow */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
+                            <div className="absolute inset-[-1px] rounded-[2rem] border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)]" />
+                        </div>
 
                         {/* Inner Background Blocker */}
                         <div className="absolute inset-[1px] bg-[#030711] rounded-[calc(2rem-1px)] z-0" />
