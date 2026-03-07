@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 const projects = [
   { id: 1, title: "Here Comes The Creations", img: "./content/herecomesthecreations.webp", tag: "Client Portfolio", url: "https://herecomesthecreations.com" },
@@ -11,6 +11,13 @@ const projects = [
 const Portfolio = () => {
   const sectionRef = useRef(null);
   const duplicatedProjects = [...projects, ...projects, ...projects];
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  // Slow down the scroll speed of the content to create parallax
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
     <section
@@ -48,55 +55,57 @@ const Portfolio = () => {
         }
       `}} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full mb-12">
-        <div className="flex flex-col items-center justify-center text-center">
-          <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-gray-900 dark:text-white">
-            Featured Work
-          </h2>
-          <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl">
-            A mix of client launches and design explorations. Click to visit.
-          </p>
+      <motion.div style={{ y }} className="relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-6 w-full mb-12">
+          <div className="flex flex-col items-center justify-center text-center">
+            <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-gray-900 dark:text-white">
+              Featured Work
+            </h2>
+            <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl">
+              A mix of client launches and design explorations. Click to visit.
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* --- MARQUEE SECTION --- */}
-      <div className="relative z-10 flex w-full mt-12">
-        <div className="marquee-track flex gap-8">
-          {duplicatedProjects.map((project, index) => (
-            <a
-              key={index}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="portfolio-card relative w-[300px] md:w-[450px] flex-shrink-0 group cursor-pointer block"
-            >
-              <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 transition-all duration-300 group-hover:shadow-2xl">
-                <div className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 p-3 flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+        {/* --- MARQUEE SECTION --- */}
+        <div className="relative flex w-full mt-12">
+          <div className="marquee-track flex gap-8">
+            {duplicatedProjects.map((project, index) => (
+              <a
+                key={index}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portfolio-card relative w-[300px] md:w-[450px] flex-shrink-0 group cursor-pointer block"
+              >
+                <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 transition-all duration-300 group-hover:shadow-2xl">
+                  <div className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 p-3 flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <div className="w-full h-125 overflow-hidden">
+                    <img
+                      src={project.img}
+                      alt={project.title}
+                      className="w-full h-full object-top object-cover"
+                      loading="eager"
+                    />
+                  </div>
                 </div>
-                <div className="w-full h-125 overflow-hidden">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-full object-top object-cover"
-                    loading="eager"
-                  />
+                <div className="mt-6 flex flex-col gap-1 px-1 text-left">
+                  <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
+                    {project.tag}
+                  </span>
                 </div>
-              </div>
-              <div className="mt-6 flex flex-col gap-1 px-1 text-left">
-                <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 transition-colors">
-                  {project.title}
-                </h3>
-                <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
-                  {project.tag}
-                </span>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

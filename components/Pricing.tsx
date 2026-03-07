@@ -1,6 +1,5 @@
-"use client"
 import React, { useRef, useEffect } from 'react'
-import { motion, animate } from 'framer-motion'
+import { motion, animate, useScroll, useTransform } from 'framer-motion'
 
 const cn = (...classes: any[]) => classes.filter(Boolean).join(' ');
 
@@ -20,6 +19,13 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
 };
 
 const Pricing: React.FC = () => {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+    const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
     const comparisonFeatures = [
         "Mobile-First Responsive Design",
         "Contact Form Integration",
@@ -99,7 +105,7 @@ const Pricing: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-[#030711] text-white font-sans relative pt-32 pb-[260px] px-6 ">
+        <div ref={sectionRef} className="min-h-screen bg-[#030711] text-white font-sans relative pt-32 pb-[260px] px-6 ">
             {/* Dot-grid background */}
             <div
                 className="absolute inset-0 pointer-events-none"
@@ -116,7 +122,7 @@ const Pricing: React.FC = () => {
                 }}
             />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <motion.div style={{ y: contentY }} className="max-w-7xl mx-auto relative z-10">
 
                 {/* --- NEW HEADER SECTION --- */}
                 <div className="text-center mb-20">
@@ -235,7 +241,7 @@ const Pricing: React.FC = () => {
                         </motion.div>
                     ))}
                 </div>
-            </div>
+            </motion.div>
 
             {/* ── MOUNTAIN RANGE + FOOTER CURVE ── */}
             <div className="absolute bottom-0 left-0 w-full pointer-events-none z-10">
@@ -266,7 +272,7 @@ const Pricing: React.FC = () => {
                     />
                 </svg>
             </div>
-        </div>
+        </div >
     );
 };
 

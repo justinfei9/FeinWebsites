@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+    const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
     const [formState, setFormState] = useState({
         name: '', email: '', phone: '', service: '', industry: '', goal: '', message: ''
     });
@@ -37,7 +44,7 @@ const Contact: React.FC = () => {
         'w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-all text-white placeholder-white/20 font-medium text-sm';
 
     return (
-        <div className="min-h-screen bg-[#030711] text-white font-sans flex items-center justify-center relative px-6 pt-20 pb-[260px]">
+        <div ref={sectionRef} className="min-h-screen bg-[#030711] text-white font-sans flex items-center justify-center relative px-6 pt-20 pb-[260px]">
 
             {/* Dot-grid background */}
             <div
@@ -56,7 +63,7 @@ const Contact: React.FC = () => {
             />
 
 
-            <div className="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+            <motion.div style={{ y: contentY }} className="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
 
                 {/* ── LEFT PANEL ── */}
                 <motion.div
@@ -267,7 +274,7 @@ const Contact: React.FC = () => {
                     </div>
                 </motion.div>
 
-            </div>
+            </motion.div>
 
             {/* ── MOUNTAIN RANGE + FOOTER CURVE ── */}
             <div className="absolute bottom-0 left-0 w-full pointer-events-none z-10">
@@ -298,7 +305,7 @@ const Contact: React.FC = () => {
                     />
                 </svg>
             </div>
-        </div>
+        </div >
     );
 };
 

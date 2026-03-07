@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, Variants, useInView } from "framer-motion";
+import { motion, Variants, useInView, useScroll, useTransform } from "framer-motion";
 import { RefreshCw, Code, Smartphone, Search, User, Cloud } from "lucide-react";
 
 // --- SHIMMER CARD COMPONENT ---
@@ -109,6 +109,12 @@ const Services: React.FC = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   const features = [
     { icon: <RefreshCw className="w-10 h-10" />, title: "Unlimited Revisions", desc: "I don't stop until you're 100% happy with the design. No extra fees, no stress.", color: "#3b82f6" },
     { icon: <Code className="w-10 h-10" />, title: "Custom Hand-Coded", desc: "No templates or slow Website Builders. I write every line of code to ensure your site is fast and secure.", color: "#8b5cf6" },
@@ -124,7 +130,7 @@ const Services: React.FC = () => {
       ref={sectionRef}
       className="py-24 bg-gray-200 dark:bg-gray-950 min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 w-full">
+      <motion.div style={{ y: contentY }} className="max-w-7xl mx-auto px-6 w-full">
 
         <div className="flex flex-col items-center justify-center text-center mb-24">
           <AnimatedUnderlineText text="Websites That Perform" isInView={isInView} />
@@ -152,7 +158,7 @@ const Services: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
