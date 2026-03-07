@@ -7,11 +7,11 @@ const Hosting: React.FC = () => {
     <section className="relative pt-32 pb-44 bg-[#dfc0ff] dark:bg-[#2e1065] overflow-hidden transition-colors duration-500">
 
       {/* --- TOP CURVE (REVERTED TO WORKING VERSION) --- */}
-      <div className="absolute top-0 left-0 w-full leading-[0] z-0">
+      <div className="absolute -top-1 left-0 w-full leading-[0] z-0">
         <svg
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
-          className="relative block w-[calc(100%+1.3px)] h-[100px] fill-blue-50 dark:fill-slate-950"
+          className="relative block w-[calc(100%+4px)] -ml-[2px] h-[100px] fill-blue-50 dark:fill-slate-950"
         >
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
         </svg>
@@ -62,11 +62,11 @@ const Hosting: React.FC = () => {
       </div>
 
       {/* --- BOTTOM CURVE (FIXED 90 DEGREE ROTATION LOGIC) --- */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0">
+      <div className="absolute -bottom-1 left-0 w-full overflow-hidden leading-[0] z-0">
         <svg
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
-          className="relative block w-[calc(100%+1.3px)] h-[80px] fill-primary transition-transform duration-300 rotate-180"
+          className="relative block w-[calc(100%+4px)] -ml-[2px] h-[80px] fill-primary transition-transform duration-300 rotate-180"
         >
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
         </svg>
