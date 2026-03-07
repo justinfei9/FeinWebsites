@@ -76,14 +76,16 @@ const Hero: React.FC = () => {
           </motion.div>
 
           {/* Secondary CTA: Glassmorphism / Outline */}
-          <motion.a
-            href="#portfolio"
+          <motion.button
+            onClick={() => {
+              document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white/5 backdrop-blur-md border-2 border-white/20 text-white font-bold py-4 px-10 rounded-full transition-all block text-lg"
+            className="bg-white/5 backdrop-blur-md border-2 border-white/20 text-white font-bold py-4 px-10 rounded-full transition-all block text-lg cursor-pointer"
           >
             View Work
-          </motion.a>
+          </motion.button>
         </motion.div>
       </motion.div>
     </section>

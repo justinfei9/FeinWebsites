@@ -387,18 +387,43 @@ const Contact: React.FC = () => {
 
                                 {/* Submit */}
                                 <motion.button
-                                    whileHover={{ scale: 1.015 }}
-                                    whileTap={{ scale: 0.97 }}
+                                    whileHover="hover"
+                                    whileTap={{ scale: 0.95 }}
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed border border-blue-400/20 text-sm mt-1"
+                                    className="group relative flex w-full items-center justify-center overflow-hidden rounded-2xl bg-blue-600 px-[1em] py-[0.8em] text-lg font-bold text-white shadow-lg shadow-blue-600/20 transition-colors duration-200 hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60 border border-blue-400/20 cursor-pointer mt-2"
                                 >
                                     {isSubmitting ? (
-                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                                     ) : (
                                         <>
-                                            <span>Submit Application</span>
-                                            <Send className="w-3.5 h-3.5" />
+                                            <motion.div
+                                                variants={{
+                                                    hover: { y: ["0.15em", "-0.15em"], transition: { repeat: Infinity, duration: 0.6, repeatType: "mirror", ease: "easeInOut" } }
+                                                }}
+                                                className="flex items-center justify-center"
+                                            >
+                                                <motion.svg
+                                                    variants={{ hover: { x: "2.5em", rotate: 45, scale: 1.1, transition: { duration: 0.3 } } }}
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="24"
+                                                    height="24"
+                                                    className="block origin-center"
+                                                >
+                                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                                    <path
+                                                        fill="currentColor"
+                                                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                                    ></path>
+                                                </motion.svg>
+                                            </motion.div>
+                                            <motion.span
+                                                variants={{ hover: { x: "10em", opacity: 0, transition: { duration: 0.3 } } }}
+                                                className="block ml-2 whitespace-nowrap"
+                                            >
+                                                Send Application
+                                            </motion.span>
                                         </>
                                     )}
                                 </motion.button>

@@ -76,11 +76,11 @@ const Portfolio = () => {
                 className="portfolio-card relative w-[300px] md:w-[450px] flex-shrink-0 group cursor-pointer block"
               >
                 {/* Image Container */}
-                <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 mb-5 relative">
+                <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 mb-5 relative transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:-translate-y-2">
                   <img
                     src={project.img}
                     alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
                     loading="eager"
                   />
                 </div>
