@@ -1,31 +1,38 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import HeroBackground from './HeroBackground';
-import TextType from './TextType'; 
+import TextType from './TextType';
 
 const Hero: React.FC = () => {
   const businessTypes = [
-    { label: "Small Businesses", color: "#93c5fd" },     
-    { label: "Local Restaurants", color: "#e75656" },     
-    { label: "Contractors", color: "#c47556" },      
-    { label: "Mechanics", color: "#4efdbd" },            
-    { label: "Painters", color: "#f7d653" },              
-    { label: "Construction Companies", color: "#fb923c" } ,
+    { label: "Small Businesses", color: "#93c5fd" },
+    { label: "Local Restaurants", color: "#e75656" },
+    { label: "Contractors", color: "#c47556" },
+    { label: "Mechanics", color: "#4efdbd" },
+    { label: "Painters", color: "#f7d653" },
+    { label: "Construction Companies", color: "#fb923c" },
     { label: "Landscapers", color: "#05cb4e" }
   ];
 
   const labels = businessTypes.map(b => b.label);
   const colors = businessTypes.map(b => b.color);
 
+  const { scrollY } = useScroll();
+  const textY = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+
   return (
     <section className="relative bg-primary pt-32 pb-36 overflow-hidden min-h-[85vh] flex items-center">
       <HeroBackground />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <motion.div
+        style={{ y: textY, opacity }}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+      >
         <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
           Professional Websites for <br />
-          <div className="h-[1.2em] mt-2 block"> 
-            <TextType 
+          <div className="h-[1.2em] mt-2 block">
+            <TextType
               text={labels}
               textColors={colors}
               className="font-extrabold"
@@ -37,18 +44,18 @@ const Hero: React.FC = () => {
           </div>
         </h1>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
           className="mt-10 max-w-2xl mx-auto text-xl text-blue-100 mb-10 leading-relaxed"
         >
-          24/7 Uptime, SEO-ready and mobile-first designs <br className="hidden md:block" /> 
+          24/7 Uptime, SEO-ready and mobile-first designs <br className="hidden md:block" />
           specifically engineered to turn your visitors into customers.
         </motion.p>
 
         {/* --- UPDATED BUTTONS --- */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -74,7 +81,7 @@ const Hero: React.FC = () => {
             View Work
           </motion.a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

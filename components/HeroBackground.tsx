@@ -1,14 +1,18 @@
 import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const HeroBackground: React.FC = () => {
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 1000], [0, 250]);
+
   return (
     <>
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-hero-pattern opacity-30 z-0 pointer-events-none"></div>
+      <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-hero-pattern opacity-30 z-0 pointer-events-none"></motion.div>
 
       {/* Animated Blobs */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob pointer-events-none"></div>
-      <div className="absolute top-0 left-0 -ml-20 -mt-20 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 pointer-events-none"></div>
+      <motion.div style={{ y: backgroundY }} className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob pointer-events-none"></motion.div>
+      <motion.div style={{ y: backgroundY }} className="absolute top-0 left-0 -ml-20 -mt-20 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 pointer-events-none"></motion.div>
 
       {/* Bottom Curve */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
