@@ -36,30 +36,78 @@ const Footer: React.FC = () => {
 
           {/* --- SOCIAL / CONTACT ICONS --- */}
           <div className="flex gap-3">
+            {/* Email */}
             <a
               href={displayEmail ? `mailto:${displayEmail}` : '#'}
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all hover:-translate-y-1 group"
               aria-label="Email Me"
+              className="relative w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-200 hover:-translate-y-1 hover:bg-blue-600 hover:text-white hover:border-transparent group"
             >
-              <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              {/* Tooltip */}
+              <span className="
+                pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2
+                px-2 py-1 rounded text-xs font-semibold whitespace-nowrap
+                bg-white text-gray-800 shadow-lg
+                opacity-0 -translate-y-1
+                group-hover:opacity-100 group-hover:translate-y-0
+                group-hover:bg-blue-600 group-hover:text-white
+                transition-all duration-300
+                after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2
+                after:border-4 after:border-transparent after:border-t-white
+                group-hover:after:border-t-blue-600
+              ">
+                Email
+              </span>
+              <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
             </a>
+
+            {/* GitHub */}
             <a
               href="https://github.com/justinfei9"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all hover:-translate-y-1 group"
               aria-label="GitHub Profile"
+              className="relative w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-200 hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:border-transparent group"
             >
-              <Code className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span className="
+                pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2
+                px-2 py-1 rounded text-xs font-semibold whitespace-nowrap
+                bg-white text-gray-800 shadow-lg
+                opacity-0 -translate-y-1
+                group-hover:opacity-100 group-hover:translate-y-0
+                group-hover:bg-violet-600 group-hover:text-white
+                transition-all duration-300
+                after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2
+                after:border-4 after:border-transparent after:border-t-white
+                group-hover:after:border-t-violet-600
+              ">
+                GitHub
+              </span>
+              <Code className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
             </a>
+
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/justin-feinman-34609726a/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all hover:-translate-y-1 group"
               aria-label="LinkedIn Profile"
+              className="relative w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-200 hover:-translate-y-1 hover:bg-[#0A66C2] hover:text-white hover:border-transparent group"
             >
-              <Briefcase className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span className="
+                pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2
+                px-2 py-1 rounded text-xs font-semibold whitespace-nowrap
+                bg-white text-gray-800 shadow-lg
+                opacity-0 -translate-y-1
+                group-hover:opacity-100 group-hover:translate-y-0
+                group-hover:bg-[#0A66C2] group-hover:text-white
+                transition-all duration-300
+                after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2
+                after:border-4 after:border-transparent after:border-t-white
+                group-hover:after:border-t-[#0A66C2]
+              ">
+                LinkedIn
+              </span>
+              <Briefcase className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
             </a>
           </div>
         </motion.div>
