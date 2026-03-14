@@ -2,12 +2,17 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main] # Robot triggers when you push to main
+    branches: [main]
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+# Add this to prevent multiple deployments from running at the same time
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build_site:
@@ -29,17 +34,22 @@ jobs:
         run: npm run build
         env:
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
-        
+
+      - name: Add CNAME
+        run: echo "feinwebsites.com" > ./dist/CNAME
+
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Vite's default output folder
+          path: './dist'
 
   deploy_site:
     needs: build_site
     runs-on: ubuntu-latest
-    # Removed the environment: name section to bypass the error
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
