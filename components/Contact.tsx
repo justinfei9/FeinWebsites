@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
+
 const AnimatedInput = ({ label, type = "text", name, value, onChange, required = false, placeholder = "" }: any) => {
     // We check if value exists to keep the label 'floated'
     const hasValue = value !== undefined && value !== null && value !== "";
@@ -73,15 +74,12 @@ const Contact: React.FC = () => {
             const formData = new FormData();
             formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
 
-            // Add all form fields to FormData
             Object.entries(formState).forEach(([key, value]) => {
                 formData.append(key, value);
             });
 
-            // Optional: Web3Forms config
             formData.append("subject", `New Contact Form Submission from ${formState.name}`);
             formData.append("from_name", formState.name);
-            // formData.append("redirect", "https://web3forms.com/success"); // if you want visual redirect, otherwise api is better
 
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
@@ -110,11 +108,16 @@ const Contact: React.FC = () => {
         setFormState({ ...formState, [e.target.name]: e.target.value });
     };
 
-    const inputClass =
-        'w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 transition-all text-white placeholder-white/20 font-medium text-sm';
-
     return (
         <div ref={sectionRef} className="min-h-screen bg-[#030711] text-white font-sans flex items-center justify-center relative px-6 pt-20 pb-[26px]">
+
+            {/* Injecting the custom keyframe for the flying animation */}
+            <style>{`
+                @keyframes fly-1 {
+                    from { transform: translateY(0.1em); }
+                    to { transform: translateY(-0.1em); }
+                }
+            `}</style>
 
             {/* Dot-grid background */}
             <div
@@ -124,14 +127,13 @@ const Contact: React.FC = () => {
                     backgroundSize: '28px 28px',
                 }}
             />
-            {/* Radial vignette — fades grid toward edges, keeps center visible */}
+            {/* Radial vignette */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                     background: 'radial-gradient(ellipse 75% 75% at 50% 50%, transparent 20%, #030711 100%)',
                 }}
             />
-
 
             <motion.div style={{ y: contentY }} className="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
 
@@ -142,7 +144,6 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     className="lg:col-span-2 flex flex-col justify-center gap-8"
                 >
-                    {/* Heading */}
                     <div>
                         <p className="text-blue-500 font-bold uppercase tracking-[0.15em] mb-4 text-sm">
                             Start a Project
@@ -156,12 +157,8 @@ const Contact: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Contact details */}
                     <div className="flex flex-col gap-4">
-                        <a
-                            href={displayEmail ? `mailto:${displayEmail}` : '#'}
-                            className="flex items-center gap-4 group"
-                        >
+                        <a href={displayEmail ? `mailto:${displayEmail}` : '#'} className="flex items-center gap-4 group">
                             <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all flex-shrink-0">
                                 <Mail className="w-4 h-4" />
                             </div>
@@ -173,19 +170,14 @@ const Contact: React.FC = () => {
                             </div>
                         </a>
 
-                        <a
-                            href={displayPhone ? `tel:+1${displayPhone.replace(/-/g, '')}` : '#'}
-                            className="flex items-center gap-4 group"
-                        >
+                        <a href={displayPhone ? `tel:+1${displayPhone.replace(/-/g, '')}` : '#'} className="flex items-center gap-4 group">
                             <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all flex-shrink-0">
                                 <Phone className="w-4 h-4" />
                             </div>
                             <div>
                                 <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Phone</p>
                                 <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
-                                    {displayPhone
-                                        ? `+1 (${displayPhone.split('-')[0]}) ${displayPhone.split('-').slice(1).join('-')}`
-                                        : '…'}
+                                    {displayPhone ? `+1 (${displayPhone.split('-')[0]}) ${displayPhone.split('-').slice(1).join('-')}` : '…'}
                                 </p>
                             </div>
                         </a>
@@ -202,7 +194,6 @@ const Contact: React.FC = () => {
                     </div>
                 </motion.div>
 
-
                 <motion.div
                     initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -210,23 +201,15 @@ const Contact: React.FC = () => {
                     className="lg:col-span-3"
                 >
                     <div className="group relative p-[1px] rounded-[2rem] shadow-2xl shadow-black/50">
-                        {/* Glow Border Layer - Outside/Around */}
                         <div className="absolute inset-[-20px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
                             <div className="absolute inset-0 bg-blue-500/10 blur-[40px] rounded-[3rem]" />
                         </div>
-
-                        {/* Border Glow */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
                             <div className="absolute inset-[-1px] rounded-[2rem] border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)]" />
                         </div>
-
-                        {/* Inner Background Blocker */}
                         <div className="absolute inset-[1px] bg-[#030711] rounded-[calc(2rem-1px)] z-0" />
 
-                        {/* Actual Form Container */}
                         <div className="relative z-10 bg-white/[0.01] border border-white/10 backdrop-blur-3xl rounded-[calc(2rem-1px)] p-6 md:p-8 overflow-hidden">
-
-                            {/* Success state */}
                             <AnimatePresence>
                                 {isSubmitted && (
                                     <motion.div
@@ -250,7 +233,6 @@ const Contact: React.FC = () => {
                                 )}
                             </AnimatePresence>
 
-                            {/* Error Message */}
                             <AnimatePresence>
                                 {submitError && !isSubmitted && (
                                     <motion.div
@@ -265,27 +247,11 @@ const Contact: React.FC = () => {
                             </AnimatePresence>
 
                             <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-4">
-
-                                {/* Row 1: Name + Email */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-                                    <AnimatedInput
-                                        label="Name"
-                                        name="name"
-                                        value={formState.name}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                    <AnimatedInput
-                                        label="Email"
-                                        type="email"
-                                        name="email"
-                                        value={formState.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
+                                    <AnimatedInput label="Name" name="name" value={formState.name} onChange={handleChange} required />
+                                    <AnimatedInput label="Email" type="email" name="email" value={formState.email} onChange={handleChange} required />
                                 </div>
 
-                                {/* Row 2: Package + Phone */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
                                     <div className="relative my-2 w-full group/input">
                                         <select
@@ -317,35 +283,14 @@ const Contact: React.FC = () => {
                                             ))}
                                         </label>
                                     </div>
-                                    <AnimatedInput
-                                        label="Phone"
-                                        type="tel"
-                                        name="phone"
-                                        value={formState.phone}
-                                        onChange={handleChange}
-                                        required
-                                    />
+                                    <AnimatedInput label="Phone" type="tel" name="phone" value={formState.phone} onChange={handleChange} required />
                                 </div>
 
-                                {/* Row 3: Industry + Goal */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-                                    <AnimatedInput
-                                        label="Industry"
-                                        name="industry"
-                                        value={formState.industry}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                    <AnimatedInput
-                                        label="How did you hear about us?"
-                                        name="goal"
-                                        value={formState.goal}
-                                        onChange={handleChange}
-                                        required
-                                    />
+                                    <AnimatedInput label="Industry" name="industry" value={formState.industry} onChange={handleChange} required />
+                                    <AnimatedInput label="How did you hear about us?" name="goal" value={formState.goal} onChange={handleChange} required />
                                 </div>
 
-                                {/* Row 4: Message */}
                                 <div className="relative my-2 w-full mb-8 group/input">
                                     <textarea
                                         id="message"
@@ -372,52 +317,45 @@ const Contact: React.FC = () => {
                                     </label>
                                 </div>
 
-                                {/* Submit */}
-                                <motion.button
-                                    whileHover="hover"
-                                    whileTap={{ scale: 0.95 }}
+                                <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="group relative flex w-full items-center justify-center overflow-hidden rounded-2xl bg-blue-600 px-[1em] py-[0.8em] text-lg font-bold text-white shadow-lg shadow-blue-600/20 transition-colors duration-200 hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60 border border-blue-400/20 cursor-pointer mt-2 h-[3.2em]"
+                                    className="group/submit relative flex w-full h-[3.2em] items-center justify-center overflow-hidden rounded-2xl bg-blue-600 text-lg font-bold text-white transition-all duration-200 hover:bg-blue-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 border-none cursor-pointer mt-2"
                                 >
                                     {isSubmitting ? (
                                         <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                                     ) : (
-                                        <>
-                                            {/* Icon — hidden by default, fades in centered on hover */}
-                                            <motion.div
-                                                variants={{
-                                                    initial: { opacity: 0, scale: 0.6 },
-                                                    hover: { opacity: 1, scale: 1.1, rotate: 45, y: ["0.15em", "-0.15em"], transition: { opacity: { duration: 0.2 }, scale: { duration: 0.2 }, rotate: { duration: 0.2 }, y: { repeat: Infinity, duration: 0.6, repeatType: "mirror", ease: "easeInOut", delay: 0.2 } } }
-                                                }}
-                                                initial="initial"
-                                                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24"
-                                                    width="24"
-                                                    height="24"
-                                                    className="block"
-                                                >
-                                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                                    <path
-                                                        fill="currentColor"
-                                                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                                                    ></path>
-                                                </svg>
-                                            </motion.div>
+                                        <div className="relative flex w-full h-full items-center justify-center">
 
-                                            {/* Text — slides out to the right on hover */}
-                                            <motion.span
-                                                variants={{ hover: { x: "10em", opacity: 0, transition: { duration: 0.25 } } }}
-                                                className="relative whitespace-nowrap"
-                                            >
-                                                Send Application
-                                            </motion.span>
-                                        </>
+                                            {/* ICON: Starts offset left (-4.3rem) to sit next to the text. Moves to dead center (0) on hover. */}
+                                            <div className="absolute flex items-center justify-center transition-all duration-300 ease-in-out -translate-x-[4.3rem] group-hover/submit:translate-x-0 group-hover/submit:scale-110 group-hover/submit:rotate-45">
+
+                                                {/* Inner wrapper for the bounce so the animation doesn't fight the translation transform */}
+                                                <div className="group-hover/submit:[animation:fly-1_0.6s_ease-in-out_infinite_alternate]">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 24 24"
+                                                        width="24"
+                                                        height="24"
+                                                        className="block"
+                                                    >
+                                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                                        <path
+                                                            fill="currentColor"
+                                                            d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                                        ></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            {/* TEXT: Starts offset right (1rem). Flies entirely off-screen on hover. */}
+                                            <span className="absolute whitespace-nowrap transition-all duration-300 ease-in-out translate-x-[1rem] group-hover/submit:translate-x-[20rem] group-hover/submit:opacity-0">
+                                                Send Message
+                                            </span>
+
+                                        </div>
                                     )}
-                                </motion.button>
+                                </button>
 
                             </form>
                         </div>
@@ -428,31 +366,10 @@ const Contact: React.FC = () => {
 
             {/* ── MOUNTAIN RANGE + FOOTER CURVE ── */}
             <div className="absolute -bottom-1 left-0 w-full pointer-events-none z-10">
-                <svg
-                    viewBox="0 0 1440 260"
-                    preserveAspectRatio="none"
-                    className="w-full block"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    {/* Layer 1 — Distant peaks (faintest) */}
-                    <path
-                        d="M0,210 L90,165 L180,195 L280,130 L370,170 L460,142 L560,178 L650,118 L740,158 L840,132 L920,165 L1010,138 L1100,172 L1190,125 L1290,162 L1380,140 L1440,170 L1440,260 L0,260 Z"
-                        fill="#1A2E4C"
-                        opacity="0.3"
-                    />
-
-                    {/* Layer 2 — Mid ridgeline */}
-                    <path
-                        d="M0,225 L80,188 L170,210 L250,160 L340,192 L430,168 L510,198 L600,148 L690,182 L780,155 L860,185 L950,160 L1040,190 L1130,158 L1220,182 L1320,162 L1410,188 L1440,172 L1440,260 L0,260 Z"
-                        fill="#1A2E4C"
-                        opacity="0.6"
-                    />
-
-                    {/* Layer 3 — Front range (full opacity, boldest) */}
-                    <path
-                        d="M0,245 L60,215 L130,235 L210,192 L290,222 L370,200 L450,228 L530,178 L620,212 L710,168 L800,205 L880,182 L960,218 L1050,188 L1140,215 L1220,195 L1310,225 L1390,205 L1440,228 L1440,260 L0,260 Z"
-                        fill="#1A2E4C"
-                    />
+                <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="w-full block" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0,210 L90,165 L180,195 L280,130 L370,170 L460,142 L560,178 L650,118 L740,158 L840,132 L920,165 L1010,138 L1100,172 L1190,125 L1290,162 L1380,140 L1440,170 L1440,260 L0,260 Z" fill="#1A2E4C" opacity="0.3" />
+                    <path d="M0,225 L80,188 L170,210 L250,160 L340,192 L430,168 L510,198 L600,148 L690,182 L780,155 L860,185 L950,160 L1040,190 L1130,158 L1220,182 L1320,162 L1410,188 L1440,172 L1440,260 L0,260 Z" fill="#1A2E4C" opacity="0.6" />
+                    <path d="M0,245 L60,215 L130,235 L210,192 L290,222 L370,200 L450,228 L530,178 L620,212 L710,168 L800,205 L880,182 L960,218 L1050,188 L1140,215 L1220,195 L1310,225 L1390,205 L1440,228 L1440,260 L0,260 Z" fill="#1A2E4C" />
                 </svg>
             </div>
         </div >
@@ -460,4 +377,3 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
-
