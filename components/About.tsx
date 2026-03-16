@@ -92,13 +92,13 @@ const About: React.FC = () => {
             <div className="relative z-10 rounded-[calc(3.5rem-3px)] overflow-hidden aspect-[4/5] m-[3px]">
               <img
                 src="./content/FounderPic.webp"
-                alt="Justin Fein"
+                alt="Justin Feinman"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-blue-900/10 to-transparent opacity-80" />
 
               <div className="absolute bottom-8 left-8 transition-transform duration-500 group-hover:-translate-y-2 text-white">
-                <h3 className="text-3xl font-black tracking-tighter uppercase leading-none drop-shadow-lg">Justin Fein</h3>
+                <h3 className="text-3xl font-black tracking-tighter uppercase leading-none drop-shadow-lg">Justin Feinman</h3>
                 <p className="text-blue-200 font-bold uppercase tracking-widest text-sm mt-2 drop-shadow-md">Owner and Solo Developer</p>
               </div>
             </div>

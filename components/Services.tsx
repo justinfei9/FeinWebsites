@@ -50,7 +50,7 @@ const AnimatedUnderlineText = ({ text, isInView }: { text: string; isInView: boo
     <div className="relative inline-block w-fit">
       {/* The Headline with Reveal Animation */}
       <motion.h2
-        className="text-4xl md:text-7xl font-black tracking-tighter leading-tight text-gray-900 dark:text-white"
+        className="text-3xl sm:text-4xl md:text-7xl font-black tracking-tighter leading-tight text-gray-900 dark:text-white"
         initial={{
           opacity: 0,
           clipPath: "inset(0% 100% 0% 0%)" // Fully clipped from the right
@@ -69,7 +69,7 @@ const AnimatedUnderlineText = ({ text, isInView }: { text: string; isInView: boo
       </motion.h2>
 
       {/* The Underline - Deep Curve Version */}
-      <div className="absolute -bottom-4 md:-bottom-7 left-0 w-full overflow-visible">
+      <div className="absolute -bottom-6 md:-bottom-7 left-0 w-full overflow-visible">
         <motion.svg
           width="100%"
           height="30"
@@ -107,7 +107,8 @@ const AnimatedUnderlineText = ({ text, isInView }: { text: string; isInView: boo
 // --- MAIN SERVICES SECTION ---
 const Services: React.FC = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const headerRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, amount: 0.1 });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -132,12 +133,15 @@ const Services: React.FC = () => {
     >
       <motion.div style={{ y: contentY }} className="max-w-7xl mx-auto px-6 w-full">
 
-        <div className="flex flex-col items-center justify-center text-center mb-24">
-          <AnimatedUnderlineText text="Websites That Perform" isInView={isInView} />
+        <div
+          ref={headerRef}
+          className="flex flex-col items-center justify-center text-center mb-24"
+        >
+          <AnimatedUnderlineText text="Websites That Perform" isInView={headerInView} />
 
           <motion.p
             initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
+            animate={headerInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-12 text-lg md:text-2xl text-gray-600 dark:text-gray-400 font-medium max-w-2xl"
           >
@@ -152,7 +156,7 @@ const Services: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
             >
               <ShimmerCard {...f} />
             </motion.div>
