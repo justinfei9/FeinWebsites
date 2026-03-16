@@ -227,8 +227,8 @@ const Contact: React.FC = () => {
                                         >
                                             <CheckCircle className="w-8 h-8" />
                                         </motion.div>
-                                        <h3 className="text-2xl font-black text-white mb-2">You're on the list!</h3>
-                                        <p className="text-blue-100/50 text-sm">I'll be in touch soon — keep an eye on your inbox.</p>
+                                        <h3 className="text-2xl font-black text-white mb-2">Message Sent</h3>
+                                        <p className="text-blue-100/50 text-sm">I'll be in touch soon!</p>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
