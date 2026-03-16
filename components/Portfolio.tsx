@@ -55,7 +55,7 @@ const Portfolio = () => {
 
       <motion.div style={{ y }} className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 w-full mb-12">
-          <div className="flex flex-col items-center justify-center text-center">
+          <div className="flex flex-col items-center justify-center text-center pt-16 md:pt-0">
             <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-gray-900 dark:text-white">
               Featured Work
             </h2>

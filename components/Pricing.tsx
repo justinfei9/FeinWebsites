@@ -33,6 +33,7 @@ const Pricing: React.FC = () => {
         "Contact Form & Lead Capture",
         "Lightning Fast Performance",
         "Advanced SEO & Schema",
+        "Priority Text Support",
         "Google Analytics Integration",
         "Google Business Profile Setup",
         "Social Media Link Previews",
@@ -40,7 +41,7 @@ const Pricing: React.FC = () => {
         "Unlimited Content Edits",
         "Zero Upfront Build Cost",
         "Monthly Analytics Reports",
-        "Priority Direct-Text Support"
+
     ];
 
     const plans = [
@@ -56,7 +57,8 @@ const Pricing: React.FC = () => {
                 "Mobile-First Responsive Design",
                 "Contact Form & Lead Capture",
                 "Lightning Fast Performance",
-                "Advanced SEO & Schema"
+                "Advanced SEO & Schema",
+                "Priority Text Support"
             ],
             accent: "bg-white/5 hover:bg-white/10",
             cta: "Get Started"
@@ -77,7 +79,8 @@ const Pricing: React.FC = () => {
                 "Google Analytics Integration",
                 "Google Business Profile Setup",
                 "Social Media Link Previews",
-                "Custom Scroll Animations"
+                "Custom Scroll Animations",
+                "Priority Text Support"
             ],
             isPopular: true,
             accent: "bg-blue-600 hover:bg-blue-500",
@@ -102,7 +105,7 @@ const Pricing: React.FC = () => {
                 "Unlimited Content Edits",
                 "Zero Upfront Build Cost",
                 "Monthly Analytics Reports",
-                "Priority Direct-Text Support"
+                "Priority Text Support"
             ],
             accent: "bg-white/5 text-white hover:bg-white/10",
             cta: "Get Started"
