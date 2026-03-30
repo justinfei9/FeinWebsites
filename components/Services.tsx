@@ -120,7 +120,7 @@ const Services: React.FC = () => {
     { icon: <RefreshCw className="w-10 h-10" />, title: "Unlimited Revisions", desc: "I don't stop until you're 100% happy with the design. No extra fees, no stress.", color: "#3b82f6" },
     { icon: <Code className="w-10 h-10" />, title: "AI-Assisted Development", desc: "I use AI to streamline my web design process. That means you get a high-quality website launched much faster, and for less than a traditional build", color: "#8b5cf6" },
     { icon: <Smartphone className="w-10 h-10" />, title: "Mobile Friendly", desc: "Your site will look perfect on every device, from iPhones to desktop monitors.", color: "#f43f5e" },
-    { icon: <Search className="w-10 h-10" />, title: "SEO Ready", desc: "Built with Google's best practices to help your business get found by local customers.", color: "#10b981" },
+    { icon: <Search className="w-10 h-10" />, title: "SEO Ready", desc: "Built with Google's best practices to help your Westchester or Long Island business get found by the right local customers.", color: "#10b981" },
     { icon: <User className="w-10 h-10" />, title: "Personal Partner", desc: "I'm a solo developer. You work directly with me, not a faceless agency or a support ticket.", color: "#f59e0b" },
     { icon: <Cloud className="w-10 h-10" />, title: "Hosting & Maintenance", desc: "I handle the 24/7 uptime and technical updates so you can focus on running your business.", color: "#06b6d4" }
   ];

@@ -49,24 +49,19 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mt-10 max-w-2xl mx-auto text-xl text-blue-100 mb-10 leading-relaxed"
+          className="mt-8 max-w-lg mx-auto text-lg text-blue-100 mb-10"
         >
-          24/7 Uptime, SEO-ready and mobile-first designs <br className="hidden md:block" />
-          specifically engineered to turn your visitors into customers.
+          SEO-ready, mobile-first websites for businesses across{' '}
+          <strong className="text-white font-semibold">Westchester & Long Island</strong>.
         </motion.p>
 
-        {/* --- UPDATED BUTTONS --- */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
           className="flex flex-col sm:flex-row justify-center gap-5 items-center"
         >
-          {/* Primary CTA: Solid Blue with Shadow */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
             <Link
               to="/contact"
               className="bg-blue-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl shadow-blue-500/40 border border-blue-400/20 transition-colors hover:bg-blue-700 block text-lg"
@@ -75,7 +70,6 @@ const Hero: React.FC = () => {
             </Link>
           </motion.div>
 
-          {/* Secondary CTA: Glassmorphism / Outline */}
           <motion.button
             onClick={() => {
               document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });

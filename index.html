@@ -2,33 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="description"
-        content="FeinWebsites uses AI-assisted development to build fast, efficient, and affordable websites for businesses that actually want to grow." />
-    <meta property="og:title" content="FeinWebsites" />
-    <meta property="og:description" content="FeinWebsites uses AI-assisted development to build fast, efficient, and affordable websites for businesses that actually want to grow." />
-    <meta property="og:image" content="https://feinwebsites.com/content/og-image.png" />
-    <meta property="og:url" content="https://feinwebsites.com/" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="FeinWebsites" />
-    <meta name="twitter:description" content="FeinWebsites uses AI-assisted development to build fast, efficient, and affordable websites for businesses that actually want to grow." />
-    <meta name="twitter:image" content="https://feinwebsites.com/content/og-image.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>FeinWebsites</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="description"
+    content="Affordable, AI-powered websites for small businesses in Westchester County and Long Island, NY. Fast, SEO-ready, and mobile-first — built by a local developer who gets results." />
+  <meta name="keywords"
+    content="web design Westchester, web design Long Island, website designer Westchester County, website designer Long Island NY, small business website, local SEO, affordable web design New York, FeinWebsites" />
+  <meta name="author" content="Justin Feinman" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Geo Targeting -->
+  <meta name="geo.region" content="US-NY" />
+  <meta name="geo.placename" content="Westchester County, Long Island, New York" />
+  <meta name="ICBM" content="40.9176, -73.7782" />
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Open Graph -->
+  <meta property="og:title" content="FeinWebsites | Web Design for Westchester & Long Island Businesses" />
+  <meta property="og:description"
+    content="Affordable, AI-powered websites for small businesses in Westchester County and Long Island, NY. Fast, SEO-ready, and mobile-first — built by a local developer." />
+  <meta property="og:image" content="https://feinwebsites.com/content/og-image.png" />
+  <meta property="og:url" content="https://feinwebsites.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FeinWebsites | Web Design for Westchester & Long Island Businesses" />
+  <meta name="twitter:description"
+    content="Affordable, AI-powered websites for small businesses in Westchester County and Long Island, NY. Fast, SEO-ready & mobile-first." />
+  <meta name="twitter:image" content="https://feinwebsites.com/content/og-image.png" />
+
+  <link rel="canonical" href="https://feinwebsites.com/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>FeinWebsites | Web Design for Westchester & Long Island Businesses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
 
 
 
 
-    <script type="importmap">
+  <script type="importmap">
     {
       "imports": {
         "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
@@ -37,12 +54,60 @@
       }
     }
     </script>
+
+  <!-- Local Business Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "FeinWebsites",
+      "description": "Affordable, AI-powered web design for small businesses in Westchester County and Long Island, NY.",
+      "url": "https://feinwebsites.com",
+      "logo": "https://feinwebsites.com/favicon.svg",
+      "image": "https://feinwebsites.com/content/og-image.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Justin Feinman"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Westchester County, New York"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Long Island, New York"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "New York City, New York"
+        }
+      ],
+      "serviceType": [
+        "Web Design",
+        "Web Development",
+        "Local SEO",
+        "Website Hosting",
+        "Website Maintenance"
+      ],
+      "priceRange": "$$",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "justinfeinman89@gmail.com",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://github.com/justinfei9",
+        "https://www.linkedin.com/in/justin-feinman-34609726a/"
+      ]
+    }
+    </script>
 </head>
 
 <body
-    class="font-sans bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-300">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+  class="font-sans bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-300">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 
 </html>

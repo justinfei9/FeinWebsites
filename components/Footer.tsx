@@ -32,6 +32,9 @@ const Footer: React.FC = () => {
             <p className="text-white/40 text-xs font-semibold tracking-wide">
               © {currentYear} Justin Feinman. All rights reserved.
             </p>
+            <p className="text-white/30 text-xs font-medium tracking-wide mt-1">
+              Serving Westchester County & Long Island, NY
+            </p>
           </div>
 
           {/* --- SOCIAL / CONTACT ICONS --- */}
