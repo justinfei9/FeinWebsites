@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Error404: React.FC = () => {
     return (
@@ -178,6 +179,29 @@ const Error404: React.FC = () => {
                         transform: translateX(0);
                     }
                 }
+                
+                .return-home-btn {
+                    position: absolute;
+                    top: 45%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #000;
+                    color: #F96302;
+                    border: 4px solid #F96302;
+                    padding: 15px 30px;
+                    font-family: inherit;
+                    font-size: clamp(16px, 2vw, 24px);
+                    font-weight: bold;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    z-index: 40;
+                    pointer-events: auto;
+                }
+                .return-home-btn:hover {
+                    background-color: #F96302;
+                    color: #000;
+                }
             `}</style>
 
             <div className="scrolling-bar top-bar"></div>
@@ -203,6 +227,10 @@ const Error404: React.FC = () => {
                     <img src="/404content/skullflame.gif" className="skull-flame" alt="Skull Flame" />
                 </span>
             </div>
+
+            <Link to="/" className="return-home-btn">
+                [ RETURN HOME ]
+            </Link>
 
             <div className="worker-row">
                 <img src="/404content/diggingDirt.gif" className="digger" alt="Digger" />

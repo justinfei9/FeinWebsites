@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -16,21 +16,31 @@ const ScrollToTop = () => {
   return null;
 };
 
+const MainLayout: React.FC = () => {
+  return (
+    <>
+      <Navbar />
+      <main className="grow">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+};
+
 const App: React.FC = () => {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
         <ScrollToTop />
-        <Navbar />
-        <main className="grow">
-          <Routes>
+        <Routes>
+          <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Error404 />} />
-          </Routes>
-        </main>
-        <Footer />
+          </Route>
+          <Route path="*" element={<Error404 />} />
+        </Routes>
       </div>
     </Router>
   );
