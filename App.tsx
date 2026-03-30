@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Pricing from './components/Pricing';
 import Home from './components/Home';
 import Contact from './components/Contact';
+import Error404 from './components/error404';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </main>
         <Footer />
