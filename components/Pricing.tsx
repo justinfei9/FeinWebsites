@@ -51,7 +51,7 @@ const Pricing: React.FC = () => {
             description: "A high-conversion landing page. Fast, sleek, and laser-focused on turning visitors into leads.",
             price: 500,
             billing: "One-Time Payment",
-            recurringFee: 30,
+            recurringFee: 100,
             included: [
                 "Custom Domain Included",
                 "Mobile-First Responsive Design",
@@ -69,7 +69,7 @@ const Pricing: React.FC = () => {
             description: "The complete digital storefront. Perfect for growing businesses needing to thoroughly showcase their services.",
             price: 1000,
             billing: "One-Time Payment",
-            recurringFee: 50,
+            recurringFee: 100,
             included: [
                 "Custom Domain Included",
                 "Mobile-First Responsive Design",
@@ -200,7 +200,7 @@ const Pricing: React.FC = () => {
                                     {plan.recurringFee && (
                                         <>
                                             <span className="bg-slate-800 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md border border-slate-700">
-                                                +${plan.recurringFee}/mo
+                                                +${plan.recurringFee}/yr
                                             </span>
                                             <span className="text-slate-500 text-[10px] uppercase font-bold tracking-tight">
                                                 Maintenance

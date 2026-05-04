@@ -30,7 +30,7 @@ const Hosting: React.FC = () => {
               <span className="text-purple-950 dark:text-purple-400">Maintenance</span>
             </h2>
             <p className="text-slate-950 dark:text-purple-200/80 mb-8 text-lg leading-relaxed font-medium">
-              Don't stress about technical updates, backups, or downtime. I offer comprehensive monthly packages so you can focus on running your business while I keep your site perfect.
+              Don't stress about technical updates, backups, or downtime. I offer comprehensive maintenance packages so you can focus on running your business while I keep your site perfect.
             </p>
 
             <motion.div
